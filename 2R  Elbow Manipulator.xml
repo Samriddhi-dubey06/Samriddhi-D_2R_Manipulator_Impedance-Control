@@ -1,0 +1,40 @@
+<mujoco>
+  <option gravity="0 0 -9.81" />
+  <option timestep="0.001" />
+
+  <worldbody>
+    <light diffuse="0.5 0.5 0.5" pos="0 0 10" dir="0 0 -1"/>
+    <geom type="plane" size="5 5 0.1" rgba="1 1 1 1"/>
+
+    <!-- First Cylinder Body of 2R Manipulator -->
+    <body pos="0 0 0.5">
+      <joint name="joint1" type="hinge" axis="-1 0 0" stiffness="0.1" damping="0.05" range="-pi/2 pi/2" pos="0 0 -0.5"/>
+      <geom type="cylinder" size="0.05 0.5" rgba="1 1 1 1" name="geom1" 
+            solref="0.002 1" solimp="0.99 0.99 0.001" friction="1 0.5 0.5" margin="0.005"/>
+      <inertial pos="0 0 0" mass="0.001" diaginertia="0.00000125 0.00000125 0.0000025"/>
+
+      <!-- Second Cylinder Body of 2R Manipulator -->
+      <body pos="0 0 1">
+        <joint name="joint2" type="hinge" axis="-1 0 0" stiffness="0.1" damping="0.05" pos="0 0 -0.5"/>
+        <geom type="cylinder" size="0.05 0.5" rgba="2 2 2 1" name="geom2" 
+              solref="0.002 1" solimp="0.99 0.99 0.001" friction="1 0.5 0.5" margin="0.005"/>
+        <inertial pos="0 0 0" mass="0.001" diaginertia="0.00000125 0.00000125 0.0000025"/>
+      </body>
+    </body>
+
+    <!-- Box Independent of the 2R Manipulator -->
+    <body name="box_body" pos="0 0.2 2.5">
+      <joint name="box" type="free"/>
+      <geom type="box" size="0.1 0.1 0.1" rgba="0 0 1 1" name="box_geom" 
+            solref="0.002 1" solimp="0.99 0.99 0.001" friction="1 0.5 0.5" margin="0.005"/>
+      <inertial pos="0 0 0" mass="0.1" diaginertia="0.0001 0.0001 0.0002"/>
+    </body>
+  </worldbody>
+
+  <!-- Actuators to Apply Torques -->
+  <actuator>
+    <motor joint="joint1" ctrllimited="true" ctrlrange="-1 1"/>
+    <motor joint="joint2" ctrllimited="true" ctrlrange="-1 1"/>
+  </actuator>
+</mujoco>
+
