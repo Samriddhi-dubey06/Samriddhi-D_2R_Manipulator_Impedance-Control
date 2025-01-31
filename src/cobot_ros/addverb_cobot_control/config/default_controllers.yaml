@@ -1,0 +1,144 @@
+# joint_limits:
+#   Joint_1:
+#     has_position_limits: true
+#     min_position: -3.14
+#     max_position: 3.14
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 40.0
+#     has_effort_limits: true
+#     max_effort: 40.0
+#     soft_lower_limit: -3.0
+#     soft_upper_limit: 3.0
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+#   Joint_2:
+#     has_position_limits: true
+#     min_position: -3.14
+#     max_position: 1.57
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 40.0
+#     has_effort_limits: true
+#     max_effort: 40.0
+#     soft_lower_limit: -3.0
+#     soft_upper_limit: 1.5
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+#   Joint_3:
+#     has_position_limits: true
+#     min_position: -0.68
+#     max_position: 1.57
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 40.0
+#     has_effort_limits: true
+#     max_effort: 40.0
+#     soft_lower_limit: -0.6
+#     soft_upper_limit: 1.5
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+#   Joint_4:
+#     has_position_limits: true
+#     min_position: -3.14
+#     max_position: 3.14
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 10.0
+#     has_effort_limits: true
+#     max_effort: 10.0
+#     soft_lower_limit: -3.0
+#     soft_upper_limit: 3.0
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+#   Joint_5:
+#     has_position_limits: true
+#     min_position: -3.14
+#     max_position: 3.14
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 10.0
+#     has_effort_limits: true
+#     max_effort: 10.0
+#     soft_lower_limit: -3.0
+#     soft_upper_limit: 3.0
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+#   Joint_6:
+#     has_position_limits: true
+#     min_position: -3.14
+#     max_position: 3.14
+#     has_velocity_limits: true
+#     max_velocity: 0.18
+#     has_acceleration_limits: true
+#     max_acceleration: 10.0
+#     has_effort_limits: true
+#     max_effort: 10.0
+#     soft_lower_limit: -3.0
+#     soft_upper_limit: 3.0
+#     k_position: 10.0
+#     k_velocity: 10.0
+
+# Joint State Publisher
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+# Velocity Controller
+velocity_controller:
+  type: velocity_controllers/JointGroupVelocityController
+  joints:
+    - Joint_1
+    - Joint_2
+    - Joint_3
+    - Joint_4
+    - Joint_5
+    - Joint_6
+
+# Effort Controller
+effort_controller:
+  type: effort_controllers/JointGroupEffortController
+  joints:
+    - Joint_1
+    - Joint_2
+    - Joint_3
+    - Joint_4
+    - Joint_5
+    - Joint_6
+
+# Joint Trajectory Controller
+joint_trajectory_controller:
+  type: joint_trajectory_controller/JointTrajectoryController
+  joints:
+    - Joint_1
+    - Joint_2
+    - Joint_3
+    - Joint_4
+    - Joint_5
+    - Joint_6
+
+# Twist Controller
+twist_controller:
+  type: twist_controller/TwistController
+  joints:
+    - Joint_1
+    - Joint_2
+    - Joint_3
+    - Joint_4
+    - Joint_5
+    - Joint_6
+  frame_id: end_effector
+
+# ROS Control Mode
+ros_control_mode: effort
+
